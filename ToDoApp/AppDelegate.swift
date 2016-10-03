@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    // for magical record - initialize coredata
+    MagicalRecord.setupCoreDataStackWithAutoMigratingSqliteStoreNamed("TodoApp.sqlite")
     return true
   }
 
@@ -41,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    self.saveContext()
+    // for magical record -clean up coredata
+    MagicalRecord.cleanUp()
   }
 
   // MARK: - Core Data stack
